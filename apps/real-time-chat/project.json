@@ -3,7 +3,7 @@
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "projectType": "application",
   "sourceRoot": "apps/real-time-chat/src",
-  "prefix": "real-time-chat",
+  "prefix": "app",
   "targets": {
     "build": {
       "executor": "@angular-devkit/build-angular:browser",
@@ -18,7 +18,11 @@
           "apps/real-time-chat/src/favicon.ico",
           "apps/real-time-chat/src/assets"
         ],
-        "styles": ["apps/real-time-chat/src/styles.css"],
+        "styles": [
+          "node_modules/@taiga-ui/core/styles/taiga-ui-theme.less",
+          "node_modules/@taiga-ui/core/styles/taiga-ui-fonts.less",
+          "apps/real-time-chat/src/styles.css"
+        ],
         "scripts": []
       },
       "configurations": {

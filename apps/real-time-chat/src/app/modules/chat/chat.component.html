@@ -1,0 +1,14 @@
+<div class="w-full max-w-xl h-[80vh] bg-white shadow-xl rounded-lg">
+  <ul class="flex flex-col justify-center p-4 overflow-auto h-3/4">
+    <li *ngFor="let msg of chatService.messages$ | async">
+      <app-message [date]="msg.createdAt" [userName]="msg.userName">
+        {{ msg.text }}
+      </app-message>
+    </li>
+  </ul>
+
+  <form [formGroup]="messageForm" (ngSubmit)="onSubmit()">
+    <tui-text-area formControlName="text"></tui-text-area>
+    <button tuiButton type="submit">Button</button>
+  </form>
+</div>

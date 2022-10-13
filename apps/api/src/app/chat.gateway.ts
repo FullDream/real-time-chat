@@ -18,6 +18,7 @@ const users: Record<string, string> = {};
   cors: {
     origin: '*',
   },
+  serveClient: false,
   namespace: 'chat',
 })
 export class ChatGateway
@@ -32,19 +33,11 @@ export class ChatGateway
   }
 
   public handleConnection(client: Socket, ...args: any[]): void {
-    const userName = client.handshake.query.userName as string;
-    const socketId = client.id;
-    users[socketId] = userName;
-
-    client.broadcast.emit('log', `${userName} connected`);
+    client.broadcast.emit('log');
   }
 
   public handleDisconnect(client: Socket): void {
-    const socketId = client.id;
-    const userName = users[socketId];
-    delete users[socketId];
-
-    client.broadcast.emit('log', `${userName} disconnected`);
+    client.broadcast.emit('log');
   }
 
   @SubscribeMessage('messages:get')

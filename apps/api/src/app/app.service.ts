@@ -6,11 +6,7 @@ import { Message, Prisma } from '@prisma/client';
 export class AppService {
   constructor(private prisma: PrismaService) {}
 
-  public async message(
-    messageWhereUniqueInput: Prisma.MessageWhereUniqueInput
-  ): Promise<Message | null> {
-    return this.prisma.message.findUnique({
-      where: messageWhereUniqueInput,
-    });
+  async createMessage(data: Prisma.MessageCreateInput) {
+    return this.prisma.message.create({ data: data });
   }
 }
