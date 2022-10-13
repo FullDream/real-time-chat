@@ -1,9 +1,16 @@
 import { Injectable } from '@nestjs/common';
-import { Message } from '@real-time-chat/api-interfaces';
+import { PrismaService } from '../common/services/prisma.service';
+import { Message, Prisma } from '@prisma/client';
 
 @Injectable()
 export class AppService {
-  getData(): Message {
-    return { message: 'Welcome to api!' };
+  constructor(private prisma: PrismaService) {}
+
+  public async message(
+    messageWhereUniqueInput: Prisma.MessageWhereUniqueInput
+  ): Promise<Message | null> {
+    return this.prisma.message.findUnique({
+      where: messageWhereUniqueInput,
+    });
   }
 }
